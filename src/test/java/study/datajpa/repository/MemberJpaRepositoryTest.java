@@ -24,7 +24,7 @@ class MemberJpaRepositoryTest {
 
         Member findMember = memberJpaRepository.find(savedMember.getId());
         assertThat(findMember.getId()).isEqualTo(member.getId());
-        assertThat(findMember.getName()).isEqualTo(member.getName());
+        assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
         // equals를 오버라이드 하지 않았으므로 기본적으로 == 비교다.
         // 하지만 jpa는 같은 트랜잭션 안에서 동일성을 보장하기 때문에 같다고 나온다.
         assertThat(findMember).isEqualTo(member);
