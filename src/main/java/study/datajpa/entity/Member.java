@@ -4,12 +4,13 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Entity
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 // 대상을 적는다. team을 적으면 무한 루프가 되므로 주의한다.
 @ToString(of = {"id", "username", "age"})
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity
+@NamedEntityGraph(name = "Member.all", attributeNodes = @NamedAttributeNode("team"))
 public class Member {
 
     @Id
@@ -34,6 +35,11 @@ public class Member {
         if (team != null) {
             changeTeam(team);
         }
+    }
+
+    public Member(String username, int age) {
+        this.username = username;
+        this.age = age;
     }
 
     // 반대쪽 멤버도 바꿔줘야 한다.
