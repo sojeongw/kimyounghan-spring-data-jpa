@@ -164,4 +164,9 @@ class MemberRepositoryTest {
 
         List<Member> members = memberRepository.findByUsername("member1");
     }
+
+    @Test
+    void callCustom() {
+        List<Member> result = memberRepository.findMemberCustom();
+    }
 }
