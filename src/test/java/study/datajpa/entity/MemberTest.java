@@ -60,19 +60,19 @@ class MemberTest {
     @Test
     public void JpaEventBaseEntity() throws Exception {
         Member member = new Member("member1");
-        // @PrePersist 발생
         memberRepository.save(member);
 
         Thread.sleep(100);
         member.setUsername("member2");
 
-        // @PreUpdate 발생
         em.flush();
         em.clear();
 
         Member findMember = memberRepository.findById(member.getId()).get();
 
         System.out.println("findMember.createdDate = " + findMember.getCreatedDate());
-        System.out.println("findMember.updatedDate = " + findMember.getUpdatedDate());
+        System.out.println("findMember.getLastModifiedDate = " + findMember.getLastModifiedDate());
+        System.out.println("findMember.getCreatedBy = " + findMember.getCreatedBy());
+        System.out.println("findMember.getLastModifiedBy = " + findMember.getLastModifiedBy());
     }
 }
