@@ -28,28 +28,28 @@ public class MemberController {
         return member.getUsername();
     }
 
-    @GetMapping("/members")
+/*    @GetMapping("/members")
     public Page<Member> list(Pageable pageable) {
         Page<Member> page = memberRepository.findAll(pageable);
         return page;
-    }
+    }*/
 
-    @GetMapping("/members")
+/*    @GetMapping("/members")
     public Page<MemberDto> listPageMap1(Pageable pageable) {
         Page<Member> page = memberRepository.findAll(pageable);
         Page<MemberDto> pageDto = page.map(MemberDto::new);
         return pageDto;
-    }
+    }*/
 
     @GetMapping("/members")
     public Page<MemberDto> listPageMap2(Pageable pageable) {
         return memberRepository.findAll(pageable).map(MemberDto::new);
     }
 
-    @PostConstruct
+/*    @PostConstruct
     public void init() {
         for (int i = 0; i < 100; i++) {
             memberRepository.save(new Member("user" + i, i));
         }
-    }
+    }*/
 }
